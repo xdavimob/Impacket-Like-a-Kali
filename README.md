@@ -114,6 +114,10 @@ pip install -U .
 ## ✅ Requirements
 
 * Linux with Python 3 installed
+* The `python3-venv` package installed (required to create a virtual environment)
+    - On Debian/Ubuntu: `sudo apt install python3-venv`
+    - On Fedora: `sudo dnf install python3-venv`
+    - On Arch: `sudo pacman -S python-virtualenv`
 * Basic tools: `git`, `curl`
 
 ---
@@ -125,4 +129,4 @@ pip install -U .
 
 ---
 
-> 🚀 **PRs, issues and suggestions are welcome!
+> 🚀 **PRs, issues and suggestions are welcome!**

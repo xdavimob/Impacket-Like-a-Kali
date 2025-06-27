@@ -3,15 +3,15 @@
 
 # 🐍 Impacket Like a Kali
 
-💥 **Objetivo:** Permitir que qualquer usuário de Linux (Ubuntu, Debian, Arch, Fedora etc.) tenha todos os scripts do [Impacket](https://github.com/fortra/impacket) disponíveis como comandos no formato `impacket-*`, exatamente como acontece no Kali Linux — mas em qualquer distro.
+💥 **Purpose:** Allow any Linux user (Ubuntu, Debian, Arch, Fedora, etc.) to have all [Impacket](https://github.com/fortra/impacket) scripts available as `impacket-*` commands, just like in Kali Linux — but on any distro.
 
-✅ Ideal para pentesters, red teamers, sysadmins e qualquer curioso que precisam do Impacket pronto para uso sem poluir o sistema com dependências.
+✅ Perfect for pentesters, red teamers, sysadmins, or anyone who needs Impacket ready to use without cluttering their system with global dependencies.
 
 ---
 
-## ✨ O que o projeto faz
+## ✨ What this project does
 
-- Cria wrappers para todos os scripts do Impacket no formato:
+- Creates wrappers for all Impacket scripts in the format:
   ```bash
   impacket-secretsdump -h
   impacket-psexec -h
@@ -19,34 +19,34 @@
   ```
 
 
-* Os scripts rodam **sempre dentro de um ambiente virtual isolado (venv)**.
-* Você não precisa mais navegar até a pasta `examples/` nem se preocupar em ativar o `venv` manualmente.
-* Atualização simples: `git pull` + `pip install -U .`
+* Scripts always run inside an isolated virtual environment (venv).
+* No need to manually navigate to the examples/ folder or activate the venv.
+* Easy updates: `git pull` + `pip install -U .`
 
 ---
 
-## 🚀 Passo a passo rápido
+## 🚀 Quick setup
 
-1️⃣ Clone este repositório em qualquer lugar ou apenas baixe o script:
+1️⃣ Download the script anywhere on your system:
 
 ```bash
 curl -O https://raw.githubusercontent.com/xdavimob/impacket-like-a-kali/main/setup-impacket-like-kali.sh
 chmod +x setup-impacket-like-kali.sh
 ```
 
-2️⃣ Execute o script:
+2️⃣ Run the script:
 
 ```bash
 ./setup-impacket-like-kali.sh
 ```
 
-3️⃣ Abra um novo terminal ou recarregue seu shell:
+3️⃣ Open a new terminal or reload your shell:
 
 ```bash
-source ~/.zshrc ou source ~/.bashrc
+source ~/.zshrc or source ~/.bashrc
 ```
 
-4️⃣ Teste:
+4️⃣ Test it:
 
 ```bash
 impacket-secretsdump -h
@@ -54,43 +54,43 @@ impacket-psexec -h
 impacket-wmiexec -h
 ```
 
-✅ Você agora terá todos os scripts do Impacket disponíveis como binários, como se estivesse usando o Kali!
+✅ You now have all Impacket scripts available as binaries, just like on Kali!
 
 ---
 
-## 🔎 O que o script faz
+## 🔎 What the script does
 
-✔️ Cria o diretório `~/Tools` (ou outro à sua escolha)
+✔️ Creates the `~/Tools` directory (or another one you choose)
 
-✔️ Clona o repositório oficial do Impacket
+✔️ Clones the official Impacket repository
 
-✔️ Cria um ambiente virtual isolado (`venv`)
+✔️ Creates an isolated virtual environment (venv)
 
-✔️ Instala todas as dependências do Impacket
+✔️ Installs all Impacket dependencies in the venv
 
-✔️ Cria wrappers executáveis para todos os scripts no formato `impacket-*` em `~/bin/impacket/`
+✔️ Generates executable wrappers for all scripts in the impacket-* format inside ~/bin/impacket/
 
-✔️ Adiciona `~/bin/impacket` ao PATH no `~/.zshrc`, se necessário
+✔️ Adds ~/bin/impacket to your PATH in ~/.zshrc if needed
 
-✔️ Nenhuma dependência é instalada globalmente no sistema — tudo fica isolado no `venv` do Impacket
+✔️ Keeps your system clean — all dependencies are isolated in the Impacket venv
 
 ---
 
-## 📦 Atualizando o Impacket no futuro
+## 📦 Updating Impacket later
 
-1️⃣ Navegue até a pasta do Impacket:
+1️⃣ Navigate to your Impacket folder:
 
 ```bash
 cd ~/Tools/impacket
 ```
 
-2️⃣ Atualize o repositório:
+2️⃣ Pull the latest updates:
 
 ```bash
 git pull
 ```
 
-3️⃣ Atualize o ambiente virtual:
+3️⃣ Update the virtual environment:
 
 ```bash
 source venv/bin/activate
@@ -99,31 +99,30 @@ pip install -U .
 
 ---
 
-## 🔥 Por que usar isso?
+## 🔥 Why use this?
 
-✔️ Scripts sempre atualizados direto do Impacket oficial
+✔️ Always up-to-date scripts directly from the official Impacket
 
-✔️ Sem poluir seu sistema com pacotes globais
+✔️ Keeps your system clean from unnecessary global packages
 
-✔️ Facilidade para red team e pentest, mesmo em distros minimalistas
+✔️ Easy setup for red teaming and pentesting, even on minimal distros
 
-✔️ Experiência idêntica ao Kali Linux em qualquer ambiente
-
----
-
-## ✅ Pré-requisitos
-
-* Linux com Python 3 instalado
-* Ferramentas básicas: `git`, `curl`
+✔️ Brings the Kali Linux experience to any Linux environment
 
 ---
 
-## 📚 Créditos
+## ✅ Requirements
 
-* [Impacket](https://github.com/fortra/impacket) — suíte oficial
-* Inspirado no ambiente padrão do Kali Linux
+* Linux with Python 3 installed
+* Basic tools: `git`, `curl`
 
 ---
 
-> 🚀 **PRs, issues e sugestões são bem-vindos!**
+## 📚 Credits
 
+* [Impacket](https://github.com/fortra/impacket) — the official suite
+* Inspired by the default experience on Kali Linux
+
+---
+
+> 🚀 **PRs, issues and suggestions are welcome!

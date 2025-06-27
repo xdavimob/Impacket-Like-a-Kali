@@ -1,58 +1,58 @@
 #!/bin/bash
 
 echo "============================================="
-echo " 🐍 Impacket Like a Kali - Setup iniciado"
+echo " 🐍 Impacket Like a Kali - Setup started"
 echo "============================================="
 
-# Passo 1: Perguntar (ou usar padrão) onde clonar o Impacket
-read -p "[?] Em qual diretório deseja instalar o Impacket? (padrão: ~/Tools) " TOOLS_DIR
+# Step 1: Ask or use default directory
+read -p "[?] Which directory should Impacket be installed in? (default: ~/Tools) " TOOLS_DIR
 TOOLS_DIR=${TOOLS_DIR:-$HOME/Tools}
 
-echo "[*] Usando diretório: $TOOLS_DIR"
+echo "[*] Using directory: $TOOLS_DIR"
 mkdir -p "$TOOLS_DIR"
 cd "$TOOLS_DIR" || {
-    echo "[-] Erro ao acessar $TOOLS_DIR"
+    echo "[-] Error accessing $TOOLS_DIR"
     exit 1
 }
 
-# Passo 2: Clonar Impacket se não existir
+# Step 2: Clone Impacket if it doesn't exist
 if [ ! -d "impacket" ]; then
-    echo "[*] Clonando Impacket..."
+    echo "[*] Cloning Impacket..."
     git clone https://github.com/fortra/impacket.git impacket
 else
-    echo "[*] Diretório Impacket já existe. Pulando clone."
+    echo "[*] Impacket directory already exists. Skipping clone."
 fi
 
 cd impacket || {
-    echo "[-] Erro ao acessar impacket/"
+    echo "[-] Error accessing impacket/"
     exit 1
 }
 
-# Passo 3: Criar e ativar o venv
+# Step 3: Create and activate the virtual environment
 if [ ! -d "venv" ]; then
-    echo "[*] Criando virtualenv..."
+    echo "[*] Creating virtualenv..."
     python3 -m venv venv
 fi
 
-echo "[*] Ativando virtualenv..."
+echo "[*] Activating virtualenv..."
 source venv/bin/activate
 
-# Passo 4: Instalar dependências
-echo "[*] Instalando dependências..."
+# Step 4: Install dependencies
+echo "[*] Installing dependencies..."
 pip install -U pip
 pip install .
 
-# Passo 5: Criar diretório de wrappers
-echo "[*] Criando diretório de wrappers: ~/bin/impacket"
+# Step 5: Create wrapper directory
+echo "[*] Creating wrapper directory: ~/bin/impacket"
 mkdir -p ~/bin/impacket
 
 cd examples || {
-    echo "[-] Diretório examples não encontrado!"
+    echo "[-] examples/ directory not found!"
     exit 1
 }
 
-# Passo 6: Gerar wrappers
-echo "[*] Gerando wrappers com prefixo 'impacket-'..."
+# Step 6: Generate wrappers
+echo "[*] Generating wrappers with 'impacket-' prefix..."
 for script in *.py; do
     name=$(basename "$script" .py)
     wrapper="$HOME/bin/impacket/impacket-$name"
@@ -62,20 +62,20 @@ source ${TOOLS_DIR}/impacket/venv/bin/activate
 exec python3 "${TOOLS_DIR}/impacket/examples/$script" "\$@"
 EOF
     chmod +x "$wrapper"
-    echo "[+] Wrapper criado: impacket-$name"
+    echo "[+] Wrapper created: impacket-$name"
 done
 
-# Passo 7: Adicionar ao PATH se necessário
+# Step 7: Add to PATH if needed
 if ! grep -q 'bin/impacket' ~/.zshrc; then
     echo 'export PATH="$HOME/bin/impacket:$PATH"' >> ~/.zshrc
-    echo "[+] PATH atualizado no ~/.zshrc"
+    echo "[+] PATH updated in ~/.zshrc"
 else
-    echo "[*] PATH já contém ~/bin/impacket. Nenhuma alteração no ~/.zshrc."
+    echo "[*] PATH already contains ~/bin/impacket. No changes made to ~/.zshrc."
 fi
 
-# Passo 8: Orientação ao usuário
+# Step 8: Final instructions
 echo "============================================="
-echo "[✔] Setup concluído!"
-echo "[ℹ] Abra um novo terminal ou execute: source ~/.zshrc"
-echo "[ℹ] Teste: impacket-secretsdump -h"
+echo "[✔] Setup complete!"
+echo "[ℹ] Open a new terminal or run: source ~/.zshrc"
+echo "[ℹ] Test it: impacket-secretsdump -h"
 echo "============================================="

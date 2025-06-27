@@ -66,12 +66,27 @@ EOF
 done
 
 # Step 7: Add to PATH if needed
-if ! grep -q 'bin/impacket' ~/.zshrc; then
-    echo 'export PATH="$HOME/bin/impacket:$PATH"' >> ~/.zshrc
-    echo "[+] PATH updated in ~/.zshrc"
-else
-    echo "[*] PATH already contains ~/bin/impacket. No changes made to ~/.zshrc."
+# Determine which shell rc file to use
+SHELL_RC=""
+if [ -n "$ZSH_VERSION" ] || [ -f "$HOME/.zshrc" ]; then
+    SHELL_RC="$HOME/.zshrc"
+elif [ -n "$BASH_VERSION" ] || [ -f "$HOME/.bashrc" ]; then
+    SHELL_RC="$HOME/.bashrc"
 fi
+
+# Update PATH if needed
+if [ -n "$SHELL_RC" ]; then
+    if ! grep -q 'bin/impacket' "$SHELL_RC"; then
+        echo 'export PATH="$HOME/bin/impacket:$PATH"' >> "$SHELL_RC"
+        echo "[+] PATH updated in $SHELL_RC"
+    else
+        echo "[*] PATH already contains ~/bin/impacket. No changes made to $SHELL_RC."
+    fi
+else
+    echo "[!] Could not detect .zshrc or .bashrc to update PATH. Please add the following line manually to your shell configuration:"
+    echo 'export PATH="$HOME/bin/impacket:$PATH"'
+fi
+
 
 # Step 8: Final instructions
 echo "============================================="
